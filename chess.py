@@ -3815,7 +3815,7 @@ def get_pos(e):
 				conc=0
 				if check_(user)[0]==1 :
 
-					dict_[user+"_king"][1]=1
+					#dict_[user+"_king"][1]=1
 					conc=1
 					st2=0
 
