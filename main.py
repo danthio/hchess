@@ -1259,7 +1259,7 @@ def draw_pawn1(x,y,col):
 
 	sz=75
 
-	print(col)
+	
 
 
 
