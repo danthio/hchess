@@ -1,8 +1,4 @@
-Introduction
+![image](https://github.com/user-attachments/assets/587e0239-2155-4738-a93f-5076a80df827)
 
-![image](https://github.com/user-attachments/assets/0959f664-cb0a-4a3f-8ccc-749eda292951)
-
-Game
-
-![image](https://github.com/user-attachments/assets/3b2183dd-d7ae-4a82-9a89-28d09a79e8ce)
-
+  
+![image](https://github.com/user-attachments/assets/2980eb0a-1fde-4429-9cdd-daf3310e7121)
