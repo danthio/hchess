@@ -545,7 +545,7 @@ def main():
 		a_+=1
 
 
-	can.create_polygon(ar,fill="blue",outline="blue")
+	can.create_polygon(ar,fill=col[1],outline=col[1])
 
 
 
