@@ -711,15 +711,15 @@ def can_b1(e):
 
 
 
-		#310 562.0 390 562.0
+		#310 552.0 390 582.0
 
 
 		if 310<=e.x<=390:
-			if 562<=e.y<=562+30:
+			if 552<=e.y<=582:
 				start_game()
 
 
-		cx,cy=310,562+15
+		cx,cy=310,552+15
 
 		r=math.sqrt((cx-e.x)**2+(cy-e.y)**2)
 
@@ -729,7 +729,7 @@ def can_b1(e):
 
 
 
-		cx,cy=390,562+15
+		cx,cy=390,552+15
 
 		r=math.sqrt((cx-e.x)**2+(cy-e.y)**2)
 
@@ -2214,6 +2214,7 @@ def intro():
 
 	can.create_line(350-40,y_+yy-5-30-10, 350+40,y_+yy-5-30-10,fill=col[0])
 	can.create_line(350-40-1,y_+yy-5-10, 350+40,y_+yy-5-10,fill=col[0])
+
 
 
 
