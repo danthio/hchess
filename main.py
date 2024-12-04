@@ -419,7 +419,7 @@ def main():
 
 
 		draw_transparent_bg(700,700,0,0,15,"#000000",0.5,0)
-		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.85,1)
+		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.9,1)
 
 		can.create_text(x_+xx/2,y_+(yy-40)/2,text=statement,font=("FreeMono",18),fill="#ffffff")
 
@@ -446,7 +446,7 @@ def main():
 
 
 		draw_transparent_bg(700,700,0,0,15,"#000000",0.5,0)
-		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.85,1)
+		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.9,1)
 
 
 		can.create_text(350,y_+30,text="Transform Pawn",font=("FreeMono",14),fill="#ffffff")
@@ -509,7 +509,7 @@ def main():
 
 
 		draw_transparent_bg(700,700,0,0,15,"#000000",0.5,0)
-		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.85,1)
+		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.9,1)
 
 		can.create_text(350,y_+(yy-40)/2,text="Are you sure you want to quit?",font=("FreeMono",14),fill="#ffffff")
 
