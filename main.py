@@ -342,18 +342,18 @@ def main():
 
 
 
+	_board_ = chess.Board()
 
-
-
-
+	try:
+		for move in moves:
+			_board_.push_uci(move)
+	except ValueError as e:
+		pass
+	    #return f"Invalid move sequence: {e}"
 
 	con=0
 
-
-
-	if board.is_checkmate():
-
-
+	if _board_.is_checkmate():
 		fen=stockfish.get_fen_position()
 		s=fen.split(" ")[1]
 
@@ -363,38 +363,48 @@ def main():
 			winner="w"
 
 		if winner==user:
-			statement="You win!"
+			statement="Checkmate. You win!"
 		else:
-			statement="You lose!"
+			statement="Checkmate. You lose!"
 
 
 		state="gameover"
 
 		con=1
-
-	elif board.is_stalemate():
+	elif _board_.is_stalemate():
 		state="gameover"
-		statement="Draw!"
+		statement="Draw by stalemate!"
 
 		con=1
 
-	elif board.is_insufficient_material():
+
+	elif _board_.is_insufficient_material():
+		
+		statement="Draw by insufficient material!"
 		state="gameover"
-		statement="Draw!"
 
 		con=1
 
-	elif board.can_claim_fifty_moves():
+	elif _board_.is_seventyfive_moves():
+		statement="Draw by seventy-five moves rule!"
 		state="gameover"
-		statement="Draw!"
 
 		con=1
 
-	elif board.can_claim_threefold_repetition():
+	elif _board_.is_fivefold_repetition():
+		statement="Draw by fivefold repetition!"
 		state="gameover"
-		statement="Draw!"
 
 		con=1
+
+	elif _board_.is_game_over():
+		statement="Game over for another reason!"
+		state="gameover"
+
+		con=1
+
+
+
 
 
 
@@ -411,15 +421,15 @@ def main():
 		draw_transparent_bg(700,700,0,0,15,"#000000",0.5,0)
 		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.85,1)
 
-		can.create_text(x_+xx/2,y_+(yy-40)/2,text=statement,font=("FreeMono",18),fill=col[0])
+		can.create_text(x_+xx/2,y_+(yy-40)/2,text=statement,font=("FreeMono",18),fill="#ffffff")
 
 
 		
-		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill=col[0])
-		can.create_line(350,y_+yy-40, 350,y_+yy, fill=col[0])
+		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#555555")
+		can.create_line(350,y_+yy-40, 350,y_+yy, fill="#555555")
 
-		can.create_text(x_+xx/4,y_+yy-20, text="New Game",font=("FreeMono",13),fill=col[0])
-		can.create_text(350+xx/4,y_+yy-20, text="Quit",font=("FreeMono",13),fill=col[0])
+		can.create_text(x_+xx/4,y_+yy-20, text="New Game",font=("FreeMono",13),fill="#ffffff")
+		can.create_text(350+xx/4,y_+yy-20, text="Quit",font=("FreeMono",13),fill="#999999")
 
 
 
@@ -439,7 +449,7 @@ def main():
 		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.85,1)
 
 
-		can.create_text(350,y_+30,text="Transform Pawn",font=("FreeMono",14),fill=col[0])
+		can.create_text(350,y_+30,text="Transform Pawn",font=("FreeMono",14),fill="#ffffff")
 
 		global tp_st
 
@@ -480,13 +490,13 @@ def main():
 
 
 
-		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill=col[0])
+		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#555555")
 		
 
 
 
 
-		can.create_text(350,y_+yy-20,text="OK",font=("FreeMono",13),fill=col[0])
+		can.create_text(350,y_+yy-20,text="OK",font=("FreeMono",13),fill="#ffffff")
 
 
 	elif state=="quit":
@@ -501,17 +511,17 @@ def main():
 		draw_transparent_bg(700,700,0,0,15,"#000000",0.5,0)
 		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.85,1)
 
-		can.create_text(350,y_+(yy-40)/2,text="Are you sure you want to quit?",font=("FreeMono",14),fill=col[0])
+		can.create_text(350,y_+(yy-40)/2,text="Are you sure you want to quit?",font=("FreeMono",14),fill="#ffffff")
 
-		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill=col[0])
-		can.create_line(350,y_+yy-40, 350,y_+yy, fill=col[0])
+		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#555555")
+		can.create_line(350,y_+yy-40, 350,y_+yy, fill="#555555")
 
 
 
 
 		
-		can.create_text(x_+xx/4,y_+yy-20, text="YES",font=("FreeMono",13),fill=col[0])
-		can.create_text(350+xx/4,y_+yy-20, text="NO",font=("FreeMono",13),fill=col[0])
+		can.create_text(x_+xx/4,y_+yy-20, text="YES",font=("FreeMono",13),fill="#ffffff")
+		can.create_text(350+xx/4,y_+yy-20, text="NO",font=("FreeMono",13),fill="#999999")
 
 
 
@@ -1900,13 +1910,18 @@ def sel(x,y):
 
 
 
-	can.create_oval(0+x,0+y,20+x,20+y,fill=col[0],outline=col[0],width=2)
-	can.create_oval(82.5-20-1+x,0+y,82.5-1+x,20+y,fill=col[0],outline=col[0],width=2)
-	can.create_oval(0+x,82.5-20-1+y,20+x,82.5-1+y,fill=col[0],outline=col[0],width=2)
-	can.create_oval(82.5-20-1+x,82.5-20-1+y,82.5-1+x,82.5-1+y,fill=col[0],outline=col[0],width=2)
+	can.create_arc(0+x,0+y,20+x,20+y,fill=col[0],outline=col[0],width=1,start=90,extent=90,style="arc")
+	can.create_arc(82.5-20+x,0+y,82.5+x,20+y,fill=col[0],outline=col[0],width=1,start=0,extent=90,style="arc")
+	can.create_arc(0+x,82.5-20+y,20+x,82.5+y,fill=col[0],outline=col[0],width=1,start=180,extent=90,style="arc")
+	can.create_arc(82.5-20+x,82.5-20+y,82.5+x,82.5+y,fill=col[0],outline=col[0],width=1,start=270,extent=90,style="arc")
 
-	can.create_polygon(10+x,0+y, 82.5-10-1+x,0+y, 82.5-1+x,10+y, 82.5-1+x,82.5-10-1+y, 82.5-10-1+x,82.5-1+y,
-		10+x,82.5-1+y, 0+x,82.5-10-1+y, 0+x,10+y,fill=col[0],outline=col[0])
+	can.create_line(0+x+10,0+y, 82.5-1+x-10+1,0+y,fill=col[0])
+	can.create_line(0+x+10-1,82.5+y, 82.5-1+x-10,82.5+y,fill=col[0])
+
+
+	can.create_line(0+x,0+y+10-1, 0+x,82.5+y-10,fill=col[0])
+	can.create_line(82.5+x,0+y+10, 82.5+x,82.5+y-10,fill=col[0])
+
 
 
 
@@ -2057,10 +2072,10 @@ def intro():
 	y_=(700-yy)/2
 
 
-	draw_transparent_bg(700,700,0,0,15,"#000000",0.5,0)
-	draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.85,1)
+	#draw_transparent_bg(700,700,0,0,15,"#000000",0.5,0)
+	draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.9,1)
 
-	can.create_text(350,y_+20,text="Play aganist stockfish",font=("FreeMono",13),anchor="c",fill=col[0])
+	can.create_text(350,y_+40,text="Play aganist Stockfish",font=("FreeMono",13),anchor="c",fill=col[0])
 
 	xv=(496-(82.5*3))/4
 
@@ -2140,15 +2155,15 @@ def intro():
 	#draw_transparent_bg(411.75,90,xc-50+30,y_+300+40,15,"#000000",1,1)
 	
 
-	can.create_arc(xc-50+30,y_+300+40, xc-50+30+20,y_+300+40+20,start=90,extent=90,style="arc",outline=col[0])
-	can.create_arc(xc-50+30,y_+300+100+30-20, xc-50+30+20,y_+300+100+30,start=180,extent=90,style="arc",outline=col[0])
-	can.create_arc(555.875-20,y_+300+100+30-20, 555.875,y_+300+100+30,start=270,extent=90,style="arc",outline=col[0])
-	can.create_arc(555.875-20,y_+300+40, 555.875,y_+300+40+20,start=0,extent=90,style="arc",outline=col[0])	
+	can.create_arc(xc-50+30,y_+300+40, xc-50+30+20,y_+300+40+20,start=90,extent=90,style="arc",outline="#555555")
+	can.create_arc(xc-50+30,y_+300+100+30-20, xc-50+30+20,y_+300+100+30,start=180,extent=90,style="arc",outline="#555555")
+	can.create_arc(555.875-20,y_+300+100+30-20, 555.875,y_+300+100+30,start=270,extent=90,style="arc",outline="#555555")
+	can.create_arc(555.875-20,y_+300+40, 555.875,y_+300+40+20,start=0,extent=90,style="arc",outline="#555555")	
 
-	can.create_line(xc-50+30,y_+300+40+10-1, xc-50+30,y_+300+100+30-10,fill=col[0])
-	can.create_line(xc-50+30+10-1,y_+300+100+30, 555.875-10,y_+300+100+30,fill=col[0])
-	can.create_line(555.875,y_+300+100+30-10, 555.875,y_+300+40+10-1,fill=col[0])
-	can.create_line(555.875-10,y_+300+40, 555.875-340-3,y_+300+40,fill=col[0])
+	can.create_line(xc-50+30,y_+300+40+10-1, xc-50+30,y_+300+100+30-10,fill="#555555")
+	can.create_line(xc-50+30+10-1,y_+300+100+30, 555.875-10,y_+300+100+30,fill="#555555")
+	can.create_line(555.875,y_+300+100+30-10, 555.875,y_+300+40+10-1,fill="#555555")
+	can.create_line(555.875-10,y_+300+40, 555.875-340-3,y_+300+40,fill="#555555")
 
 	can.create_text(xc-50+30+15,y_+300+40,text="Theme",font=("FreeMono",13),anchor="w",fill=col[0])
 
