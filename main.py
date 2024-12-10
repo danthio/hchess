@@ -1909,18 +1909,7 @@ def sel(x,y):
 
 
 
-
-	can.create_arc(0+x,0+y,20+x,20+y,fill=col[0],outline=col[0],width=1,start=90,extent=90,style="arc")
-	can.create_arc(82.5-20+x,0+y,82.5+x,20+y,fill=col[0],outline=col[0],width=1,start=0,extent=90,style="arc")
-	can.create_arc(0+x,82.5-20+y,20+x,82.5+y,fill=col[0],outline=col[0],width=1,start=180,extent=90,style="arc")
-	can.create_arc(82.5-20+x,82.5-20+y,82.5+x,82.5+y,fill=col[0],outline=col[0],width=1,start=270,extent=90,style="arc")
-
-	can.create_line(0+x+10,0+y, 82.5-1+x-10+1,0+y,fill=col[0])
-	can.create_line(0+x+10-1,82.5+y, 82.5-1+x-10,82.5+y,fill=col[0])
-
-
-	can.create_line(0+x,0+y+10-1, 0+x,82.5+y-10,fill=col[0])
-	can.create_line(82.5+x,0+y+10, 82.5+x,82.5+y-10,fill=col[0])
+	can.create_line(0+x+10-1,82.5+y+5, 82.5-1+x-10,82.5+y+5,fill=col[0],width=3)
 
 
 
@@ -2072,7 +2061,7 @@ def intro():
 	y_=(700-yy)/2
 
 
-	#draw_transparent_bg(700,700,0,0,15,"#000000",0.5,0)
+	draw_transparent_bg(700,700,0,0,15,"#000000",0.5,0)
 	draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.9,1)
 
 	can.create_text(350,y_+40,text="Play aganist Stockfish",font=("FreeMono",13),anchor="c",fill=col[0])
