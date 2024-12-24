@@ -419,17 +419,17 @@ def main():
 
 
 		draw_transparent_bg(700,700,0,0,15,"#000000",0.5,0)
-		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.9,1)
+		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.85,1)
 
-		can.create_text(x_+xx/2,y_+(yy-40)/2,text=statement,font=("FreeMono",18),fill="#ffffff")
+		can.create_text(x_+xx/2,y_+(yy-40)/2,text=statement,font=("FreeMono",13),fill=col[0])
 
 
 		
 		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#555555")
 		can.create_line(350,y_+yy-40, 350,y_+yy, fill="#555555")
 
-		can.create_text(x_+xx/4,y_+yy-20, text="New Game",font=("FreeMono",13),fill="#ffffff")
-		can.create_text(350+xx/4,y_+yy-20, text="Quit",font=("FreeMono",13),fill="#999999")
+		can.create_text(x_+xx/4,y_+yy-20, text="New Game",font=("FreeMono",13),fill=col[0])
+		can.create_text(350+xx/4,y_+yy-20, text="Quit",font=("FreeMono",13),fill=col[1])
 
 
 
@@ -446,10 +446,10 @@ def main():
 
 
 		draw_transparent_bg(700,700,0,0,15,"#000000",0.5,0)
-		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.9,1)
+		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.85,1)
 
 
-		can.create_text(350,y_+30,text="Transform Pawn",font=("FreeMono",14),fill="#ffffff")
+		can.create_text(350,y_+30,text="Transform Pawn",font=("FreeMono",13),fill=col[0])
 
 		global tp_st
 
@@ -496,7 +496,7 @@ def main():
 
 
 
-		can.create_text(350,y_+yy-20,text="OK",font=("FreeMono",13),fill="#ffffff")
+		can.create_text(350,y_+yy-20,text="OK",font=("FreeMono",13),fill=col[0])
 
 
 	elif state=="quit":
@@ -509,9 +509,9 @@ def main():
 
 
 		draw_transparent_bg(700,700,0,0,15,"#000000",0.5,0)
-		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.9,1)
+		draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.85,1)
 
-		can.create_text(350,y_+(yy-40)/2,text="Are you sure you want to quit?",font=("FreeMono",14),fill="#ffffff")
+		can.create_text(350,y_+(yy-40)/2,text="Are you sure you want to quit?",font=("FreeMono",13),fill=col[0])
 
 		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#555555")
 		can.create_line(350,y_+yy-40, 350,y_+yy, fill="#555555")
@@ -520,8 +520,8 @@ def main():
 
 
 		
-		can.create_text(x_+xx/4,y_+yy-20, text="YES",font=("FreeMono",13),fill="#ffffff")
-		can.create_text(350+xx/4,y_+yy-20, text="NO",font=("FreeMono",13),fill="#999999")
+		can.create_text(x_+xx/4,y_+yy-20, text="YES",font=("FreeMono",13),fill=col[0])
+		can.create_text(350+xx/4,y_+yy-20, text="NO",font=("FreeMono",13),fill=col[1])
 
 
 
@@ -559,12 +559,12 @@ def main():
 
 
 
-	ar=[740,75]
+	ar=[740+1,75]
 
 	a_=90
 	for a in range(90):
 
-		x=10*math.sin(math.radians(a_))+740-10
+		x=10*math.sin(math.radians(a_))+740-10+1
 		y=10*math.cos(math.radians(a_))+75-10
 
 		ar.append(x)
@@ -572,9 +572,31 @@ def main():
 
 		a_-=1
 
-
-
 	can.create_polygon(ar,fill="blue",outline="blue")
+
+
+	a_=90
+
+
+	cx,cy=700-10,10
+	for a in range(90):
+
+		x=10*math.sin(math.radians(a_))+cx
+		y=10*math.cos(math.radians(a_))+cy
+
+		
+		ar.append(x)
+		ar.append(y)
+
+		a_+=1
+
+
+	ar.append(700)
+	ar.append(0)
+
+
+
+	can.create_polygon(ar,fill=col[1],outline=col[1])
 
 
 	can.create_image(700+5,5,image=quit,anchor="nw")
@@ -674,7 +696,7 @@ def can_b1(e):
 		
 
 		if 164.125<=e.x<=246.625:
-			if 180+3<=e.y<=262.5+3:
+			if 235<=e.y<=235+82.5:
 
 				sel_side=1
 				intro()
@@ -683,7 +705,7 @@ def can_b1(e):
 
 
 		if 308.75<=e.x<=391.25:
-			if 180+3<=e.y<=262.5+3:
+			if 235<=e.y<=235+82.5:
 
 				sel_side=2
 				intro()
@@ -692,7 +714,7 @@ def can_b1(e):
 
 
 		if 453.375<=e.x<=535.875:
-			if 180+3<=e.y<=262.5+3:
+			if 235<=e.y<=235+82.5:
 
 				sel_side=3
 				intro()
@@ -702,7 +724,7 @@ def can_b1(e):
 
 
 		if 159.125-5<=e.x<=540.875+5:
-			if 350-10-3+3+20<=e.y<=350+10-3+3+20:
+			if 425-10<=e.y<=425+10:
 
 
 				x=e.x-159.125-5+408.925/21
@@ -725,11 +747,11 @@ def can_b1(e):
 
 
 		if 310<=e.x<=390:
-			if 552<=e.y<=582:
+			if 500<=e.y<=530:
 				start_game()
 
 
-		cx,cy=310,552+15
+		cx,cy=310,500+15
 
 		r=math.sqrt((cx-e.x)**2+(cy-e.y)**2)
 
@@ -739,7 +761,7 @@ def can_b1(e):
 
 
 
-		cx,cy=390,552+15
+		cx,cy=390,500+15
 
 		r=math.sqrt((cx-e.x)**2+(cy-e.y)**2)
 
@@ -747,30 +769,6 @@ def can_b1(e):
 			start_game()
 
 
-
-
-
-
-		if 161.125<=e.x<=267.125:
-			if 457.0+3<=e.y<=513.0+3:
-				bg_sel=1
-				col=["#B1E4B9","#70A2A3"]
-
-				intro()
-
-		if 297.0<=e.x<=403.0:
-			if 457.0+3<=e.y<=513.0+3:
-				bg_sel=2
-				col=["#eedc97","#8c6c34"]
-
-				intro()
-
-		if 432.875<=e.x<=535.875:
-			if 457.0+3<=e.y<=513.0+3:
-				bg_sel=3
-				col=["#cccccc","#7c7c7c"]
-
-				intro()
 
 
 	elif state=="transform_pawn":
@@ -1566,8 +1564,8 @@ def draw_knight(x,y,col_):
 	
 	
 	can.create_polygon(ar11,outline=col2,fill=col1,width=1)
-	can.create_polygon(ar22,outline=col2,fill=col1,width=1)
-	can.create_polygon(ar33,outline=col2,fill=col1,width=1)
+	can.create_polygon(ar22,outline=col2,fill=col2,width=1)
+	can.create_polygon(ar33,outline=col2,fill=col2,width=1)
 
 
 def getxy_from_pos(x,y):
@@ -1909,7 +1907,7 @@ def sel(x,y):
 
 
 
-	can.create_line(0+x+10-1,82.5+y+5, 82.5-1+x-10,82.5+y+5,fill=col[0],width=3)
+	can.create_line(0+x+10-1,82.5+y, 82.5-1+x-10,82.5+y,fill=col[0],width=1)
 
 
 
@@ -2014,7 +2012,7 @@ def scale_difficulty():
 
 
 
-	xx,yy=496,494
+	xx,yy=496,390
 
 	x_=(700-xx)/2
 	y_=(700-yy)/2
@@ -2055,16 +2053,16 @@ def intro():
 	draw_board()
 
 
-	xx,yy=496,494
+	xx,yy=496,390
 
 	x_=(700-xx)/2
 	y_=(700-yy)/2
 
 
 	draw_transparent_bg(700,700,0,0,15,"#000000",0.5,0)
-	draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.9,1)
+	draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.85,1)
 
-	can.create_text(350,y_+40,text="Play aganist Stockfish",font=("FreeMono",13),anchor="c",fill=col[0])
+	can.create_text(350,y_+40,text="Play aganist Stockfish AI",font=("FreeMono",13),anchor="c",fill=col[0])
 
 	xv=(496-(82.5*3))/4
 
@@ -2099,8 +2097,8 @@ def intro():
 
 
 	draw_pawn(x_+xv+82.5,y_+80+82.5,0)
-	draw_pawn1(x_+xv*2+82.5+82.5,y_+80+82.5,0)
 	draw_pawn2(x_+xv*2+82.5+82.5,y_+80+82.5,1)
+	draw_pawn1(x_+xv*2+82.5+82.5,y_+80+82.5,0)
 	draw_pawn(x_+xv*3+82.5*2+82.5,y_+80+82.5,1)
 
 	can.create_text(x_+xv+82.5/2,y_+80+82.5+20,text="white",font=("FreeMono",13),fill=col[0])
@@ -2113,6 +2111,11 @@ def intro():
 
 	can.create_line(x_+xv,y_+250+20, x_+xx-xv,y_+250+20,fill=col[0],width=2)
 
+
+	
+
+
+
 	can.create_text(350,y_+250+30+20,text=str(int(difficulty)),font=("FreeMono",13),fill=col[0])
 
 
@@ -2122,69 +2125,6 @@ def intro():
 
 
 	
-
-
-
-
-	w=100
-	xc=x_+xv
-	xc2=(371.75-w*3)/4
-
-
-	
-	#can.create_rectangle(xc-50+30,y_+300+40, 555.875,y_+300+100+30,outline=col[0])
-
-
-
-
-
-	#draw_transparent_bg(xx,yy,x_,y_,15,"#000000",0.85,1)
-
-
-	#draw_transparent_bg(411.75,90,xc-50+30,y_+300+40,15,"#000000",1,1)
-	
-
-	can.create_arc(xc-50+30,y_+300+40, xc-50+30+20,y_+300+40+20,start=90,extent=90,style="arc",outline="#555555")
-	can.create_arc(xc-50+30,y_+300+100+30-20, xc-50+30+20,y_+300+100+30,start=180,extent=90,style="arc",outline="#555555")
-	can.create_arc(555.875-20,y_+300+100+30-20, 555.875,y_+300+100+30,start=270,extent=90,style="arc",outline="#555555")
-	can.create_arc(555.875-20,y_+300+40, 555.875,y_+300+40+20,start=0,extent=90,style="arc",outline="#555555")	
-
-	can.create_line(xc-50+30,y_+300+40+10-1, xc-50+30,y_+300+100+30-10,fill="#555555")
-	can.create_line(xc-50+30+10-1,y_+300+100+30, 555.875-10,y_+300+100+30,fill="#555555")
-	can.create_line(555.875,y_+300+100+30-10, 555.875,y_+300+40+10-1,fill="#555555")
-	can.create_line(555.875-10,y_+300+40, 555.875-340-3,y_+300+40,fill="#555555")
-
-	can.create_text(xc-50+30+15,y_+300+40,text="Theme",font=("FreeMono",13),anchor="w",fill=col[0])
-
-
-
-
-	if bg_sel==1:
-		can.create_rectangle(xc-3,y_+360-3, xc+w+3,y_+360+w/2+3,outline=col[0])
-
-	elif bg_sel==2:
-		can.create_rectangle(xc+xc2*2+w-3,y_+360-3, xc+xc2*2+w*2+3,y_+360+w/2+3,outline=col[0])
-
-	elif bg_sel==3:
-		can.create_rectangle(xc+371.75-w-6,y_+360-3, xc+371.75,y_+360+w/2+3,outline=col[0])
-
-
-
-
-	can.create_rectangle(xc,y_+360, xc+w/2,y_+360+w/2,fill="#B1E4B9",outline="#B1E4B9")
-	can.create_rectangle(xc+w/2,y_+360, xc+w,y_+360+w/2,fill="#70A2A3",outline="#70A2A3")
-
-
-
-	
-
-	can.create_rectangle(xc+xc2*2+w,y_+360, xc+xc2*2+w*2-w/2,y_+360+w/2,fill="#eedc97",outline="#eedc97")
-	can.create_rectangle(xc+xc2*2+w+w/2,y_+360, xc+xc2*2+w*2,y_+360+w/2,fill="#8c6c34",outline="#8c6c34")
-
-	
-
-	can.create_rectangle(xc+371.75-3-w,y_+360, xc+371.75-3-w/2,y_+360+w/2,fill="#cccccc",outline="#cccccc")
-	can.create_rectangle(xc+371.75-3-w/2,y_+360, xc+371.75-3,y_+360+w/2,fill="#7c7c7c",outline="#7c7c7c")
 
 
 
@@ -2218,6 +2158,7 @@ def intro():
 
 	can.create_line(350-40,y_+yy-5-30-10, 350+40,y_+yy-5-30-10,fill=col[0])
 	can.create_line(350-40-1,y_+yy-5-10, 350+40,y_+yy-5-10,fill=col[0])
+
 
 
 
@@ -2270,7 +2211,7 @@ root.geometry("700x700+"+str(int(x))+"+0" )
 
 root.wm_attributes("-transparentcolor","blue")
 root.resizable(0,0)
-root.title("Hchess")
+root.title("hchess")
 root.wm_attributes("-topmost",1)
 root.iconbitmap("data/icon.ico")
 
