@@ -2053,7 +2053,12 @@ def intro():
 	can.create_text((40+76*8)/2,y_+220+20,text="Difficulty",font=("FreeMono",13),anchor="c",fill=col[0])
 
 
-	can.create_line(x_+xv,y_+250+20, x_+xx-xv,y_+250+20,fill=col[0],width=2)
+	v=(505-143)/20
+
+	
+
+
+	can.create_line(x_+xv+v,y_+250+20, x_+xx-xv,y_+250+20,fill=col[0],width=2)
 
 	#print(x_+xv,y_+250+20, x_+xx-xv,y_+250+20)
 
