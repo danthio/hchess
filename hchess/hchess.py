@@ -213,23 +213,23 @@ def main():
 
 		p=m[2:][:2]
 
-		castlec=[120, 254, 39]
+		hc=[120, 254, 39]
 
 		
 
 		if sel_=="e8":
 			if check_piece_with_pos(sel_)[1]=="k":
 				if p=="g8" or p=="c8":
-					castlec=[0,0,255]
+					hc=[0,0,255]
 
 
 		elif sel_=="e1":
 			if check_piece_with_pos(sel_)[1]=="K":
 				if p=="g1" or p=="c1":
-					castlec=[0,0,255]
+					hc=[0,0,255]
 
 
-		draw_bg(p,1,castlec)
+		draw_bg(p,1,hc)
 
 
 
@@ -442,8 +442,8 @@ def main():
 
 
 		
-		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#ffffff")
-		can.create_line((40+76*8)/2,y_+yy-40, (40+76*8)/2,y_+yy, fill="#ffffff")
+		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#555555")
+		can.create_line((40+76*8)/2,y_+yy-40, (40+76*8)/2,y_+yy, fill="#555555")
 
 		can.create_text(x_+xx/4,y_+yy-20, text="New Game",font=("FreeMono",13),fill="#ffffff")
 		can.create_text((40+76*8)/2+xx/4,y_+yy-20, text="Quit",font=("FreeMono",13),fill="#777777")
@@ -518,7 +518,7 @@ def main():
 
 
 
-		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#ffffff")
+		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#555555")
 
 
 		
@@ -543,8 +543,8 @@ def main():
 
 		can.create_text((40+76*8)/2,y_+(yy-40)/2,text="Are you sure you want to quit?",font=("FreeMono",13),fill="#ffffff")
 
-		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#ffffff")
-		can.create_line((40+76*8)/2,y_+yy-40, (40+76*8)/2,y_+yy, fill="#ffffff")
+		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#555555")
+		can.create_line((40+76*8)/2,y_+yy-40, (40+76*8)/2,y_+yy, fill="#555555")
 
 
 
