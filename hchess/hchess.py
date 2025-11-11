@@ -15,72 +15,7 @@ from stockfish import Stockfish
 
 
 
-"""
 
-im=Image.open("data/white_pawn.png")
-im=im.resize((70,70))
-im2=im.crop((0,0,35,70))
-im.save("data/white_pawn.png")
-im2.save("data/white_pawn2.png")
-
-im=Image.open("data/black_pawn.png")
-im=im.resize((70,70))
-im2=im.crop((35,0,70,70))
-im.save("data/black_pawn.png")
-im2.save("data/black_pawn2.png")
-
-im=Image.open("data/white_bishop.png")
-im=im.resize((70,70))
-im.save("data/white_bishop.png")
-
-
-im=Image.open("data/black_bishop.png")
-im=im.resize((70,70))
-im.save("data/black_bishop.png")
-
-
-
-im=Image.open("data/white_knight.png")
-im=im.resize((70,70))
-im.save("data/white_knight.png")
-
-
-im=Image.open("data/black_knight.png")
-im=im.resize((70,70))
-im.save("data/black_knight.png")
-
-
-im=Image.open("data/white_rook.png")
-im=im.resize((70,70))
-im.save("data/white_rook.png")
-
-
-im=Image.open("data/black_rook.png")
-im=im.resize((70,70))
-im.save("data/black_rook.png")
-
-
-im=Image.open("data/white_queen.png")
-im=im.resize((70,70))
-im.save("data/white_queen.png")
-
-
-im=Image.open("data/black_queen.png")
-im=im.resize((70,70))
-im.save("data/black_queen.png")
-
-
-im=Image.open("data/white_king.png")
-im=im.resize((70,70))
-im.save("data/white_king.png")
-
-
-im=Image.open("data/black_king.png")
-im=im.resize((70,70))
-im.save("data/black_king.png")
-
-
-"""
 
 board_ar=[]
 flag=0
@@ -278,7 +213,23 @@ def main():
 
 		p=m[2:][:2]
 
-		draw_bg(p,1,[120, 254, 39])
+		castlec=[120, 254, 39]
+
+		
+
+		if sel_=="e8":
+			if check_piece_with_pos(sel_)[1]=="k":
+				if p=="g8" or p=="c8":
+					castlec=[0,0,255]
+
+
+		elif sel_=="e1":
+			if check_piece_with_pos(sel_)[1]=="K":
+				if p=="g1" or p=="c1":
+					castlec=[0,0,255]
+
+
+		draw_bg(p,1,castlec)
 
 
 
@@ -475,8 +426,6 @@ def main():
 
 
 
-
-
 	if con==1:
 
 		xx,yy=496,150
@@ -493,8 +442,8 @@ def main():
 
 
 		
-		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#555555")
-		can.create_line((40+76*8)/2,y_+yy-40, (40+76*8)/2,y_+yy, fill="#555555")
+		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#ffffff")
+		can.create_line((40+76*8)/2,y_+yy-40, (40+76*8)/2,y_+yy, fill="#ffffff")
 
 		can.create_text(x_+xx/4,y_+yy-20, text="New Game",font=("FreeMono",13),fill="#ffffff")
 		can.create_text((40+76*8)/2+xx/4,y_+yy-20, text="Quit",font=("FreeMono",13),fill="#777777")
@@ -569,7 +518,7 @@ def main():
 
 
 
-		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#555555")
+		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#ffffff")
 
 
 		
@@ -594,8 +543,8 @@ def main():
 
 		can.create_text((40+76*8)/2,y_+(yy-40)/2,text="Are you sure you want to quit?",font=("FreeMono",13),fill="#ffffff")
 
-		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#555555")
-		can.create_line((40+76*8)/2,y_+yy-40, (40+76*8)/2,y_+yy, fill="#555555")
+		can.create_line(x_,y_+yy-40, x_+xx,y_+yy-40,fill="#ffffff")
+		can.create_line((40+76*8)/2,y_+yy-40, (40+76*8)/2,y_+yy, fill="#ffffff")
 
 
 
@@ -2198,7 +2147,7 @@ root.geometry(str(wh)+"x"+str(wh)+"+"+str(int(x))+"+0" )
 
 root.wm_attributes("-transparentcolor","blue")
 root.resizable(0,0)
-root.title("HCHESS")
+root.title("CHESS")
 root.wm_attributes("-topmost",1)
 root.iconbitmap("data/icon.ico")
 
